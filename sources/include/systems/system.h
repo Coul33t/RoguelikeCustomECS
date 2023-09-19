@@ -23,7 +23,7 @@ public:
     void add_comp(Component* comp, const UUIDv4::UUID& ent_uuid);
     void add_comp(Component* comp, const Entity& ent);
 
-    void run();
+    virtual void run();
 
     std::string name;
     std::vector<std::pair<UUIDv4::UUID, Component*>> components;
