@@ -2,30 +2,16 @@
 #include <vector>
 #include <any>
 
-#include "include/entity.h"
+#include "include/entities/entity.h"
 #include "include/engine.h"
-#include "include/systems/system.h"
+#include "include/systems/system_move.h"
 
 int main() {
+    std::cout << "Hello, World!" << std::endl;
 
     Engine engine;
-    Conductor conductor;
+    engine.init();
+    engine.run();
 
-    System* sys_mov = new System();
-    System* sys2 = new System();
-
-    conductor.add_system(sys_mov);
-    conductor.add_system(sys2);
-
-    Entity player;
-
-    player.add_tag(PlayerTag());
-    sys_mov->add_comp(new PlayerComp(), player);
-    sys_mov->add_comp(new MovableComp(), player);
-
-    conductor.run_systems();
-
-
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
