@@ -7,9 +7,9 @@
 
 #include <vector>
 
-#include "../../extlib/uuid_v4/uuid_v4.h"
+#include "uuid_v4.h"
 
-#include "tags.h"
+#include "../tags.h"
 
 
 class Entity {
