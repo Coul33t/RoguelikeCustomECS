@@ -12,8 +12,11 @@
 #include "../../../extlib/uuid_v4/uuid_v4.h"
 
 #include "../components.h"
-#include "../entity.h"
+#include "../entities/entity.h"
 
+#include "../tools.h"
+
+enum SystemType {SYS_NONE, SYS_MOVE, SYS_INPUT};
 
 class System {
 public:
