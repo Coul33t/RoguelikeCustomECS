@@ -6,7 +6,7 @@
 
 System::System() {
     this->name = "DEFAULT";
-    this->valid_comp_type = ComponentType::NONE;
+    this->valid_comp_type = ComponentType::COMP_NONE;
 }
 
 System::~System() {
@@ -14,6 +14,7 @@ System::~System() {
 }
 
 void System::add_comp(Component* comp, const UUIDv4::UUID& ent_uuid) {
+    
     if (comp->comp_type == this->valid_comp_type) {
         this->components.emplace_back(ent_uuid, comp);
     }

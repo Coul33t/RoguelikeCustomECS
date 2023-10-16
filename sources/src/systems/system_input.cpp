@@ -6,12 +6,10 @@
 
 SystemInput::SystemInput() {
     this->name = "Input System";
-    this->valid_comp_type = ComponentType::NONE;
+    this->valid_comp_type = ComponentType::COMP_NONE;
 }
 
-SystemInput::~SystemInput() {
-
-}
+SystemInput::~SystemInput() = default;
 
 void SystemInput::run() {
 

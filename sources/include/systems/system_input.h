@@ -9,6 +9,7 @@
 #include "../components.h"
 
 class SystemInput: public System {
+public:
     SystemInput();
     ~SystemInput();
 

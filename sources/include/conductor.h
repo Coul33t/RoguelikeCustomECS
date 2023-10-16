@@ -11,7 +11,7 @@
 #include "../../extlib/uuid_v4/uuid_v4.h"
 
 #include "systems/system.h"
-#include "entity.h"
+#include "entities/entity.h"
 
 class Conductor {
 
