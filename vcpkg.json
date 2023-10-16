@@ -1,16 +1,18 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "roguelike-custom-ecs",
-  "version": "0.0.1",
+  "version-semver": "0.0.0",
   "dependencies": [
-    "libtcod",
-    "sdl2",
     {
-      "name": "sdl2",
-      "default-features": false,
+      "name": "libtcod",
+      "default-features": true,
       "features": [
-        "x11"
-      ],
-      "platform": "linux"
-    }
+        "png",
+        "sdl",
+        "unicode",
+        "zlib"
+      ]
+    },
+    "sdl2"
   ]
 }

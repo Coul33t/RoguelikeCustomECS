@@ -1,11 +1,17 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required (VERSION 3.13...3.21)
 
-SET(CMAKE_TOOLCHAIN_FILE
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    set(CMAKE_TOOLCHAIN_FILE
         "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         CACHE STRING "Vcpkg toolchain file")
+endif()
 
-project(RoguelikeCustomECS)
+project(
+        RoguelikeCustomECS
+        LANGUAGES C CXX
+)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")  # Keep all runtime files in one directory.
 set(CMAKE_CXX_STANDARD 20)
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
@@ -23,11 +29,28 @@ INCLUDE_DIRECTORIES(
         ${PROJECT_SOURCE_DIR}/src/systems
 )
 
-FILE(GLOB all_SRCS
-        "${PROJECT_SOURCE_DIR}/main.cpp"
-        "${PROJECT_SOURCE_DIR}/include/*.hpp"
-        "${PROJECT_SOURCE_DIR}/src/*.cpp"
+
+file(
+    GLOB_RECURSE SOURCE_FILES
+    CONFIGURE_DEPENDS  # Automatically reconfigure if source files are added/removed.
+    ${PROJECT_SOURCE_DIR}/sources/*.cpp
+    ${PROJECT_SOURCE_DIR}/sources/include/*.h
+    ${PROJECT_SOURCE_DIR}/sources/include/*.hpp
+    ${PROJECT_SOURCE_DIR}/sources/src/*.cpp
 )
 
-add_executable(RoguelikeCustomECS ${all_SRCS})
-TARGET_LINK_LIBRARIES(ProjectRLECS PRIVATE libtcod::libtcod BearLibTerminal)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+# Ensure the C++17 standard is available.
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+find_package(SDL2 CONFIG REQUIRED)
+find_package(libtcod CONFIG REQUIRED)
+target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+        SDL2::SDL2
+        SDL2::SDL2main
+        libtcod::libtcod
+        ${CMAKE_SOURCE_DIR}/extlib/blt/BearLibTerminal.lib
+)
