@@ -7,12 +7,22 @@
 
 #include "conductor.h"
 
+#include "systems/system_input.h"
+#include "systems/system_move.h"
+
+#include "entities/entities_factory.h"
+
 class Engine {
 public:
     Engine();
     ~Engine();
 
-    void subscribe_systems();
+    void subscribe_system(System* sys);
+    void subscribe_all_systems();
+
+    void init();
+
+    void run();
 
     Conductor conductor;
 };
