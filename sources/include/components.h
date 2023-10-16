@@ -5,21 +5,15 @@
 #ifndef ROGUELIKECUSTOMECS_COMPONENTS_H
 #define ROGUELIKECUSTOMECS_COMPONENTS_H
 
-enum ComponentType {NONE, PLAYER, MOVABLE};
+enum ComponentType {COMP_NONE, COMP_PLAYER, COMP_MOVABLE};
 
 struct Component {
     ComponentType comp_type;
 };
 
-struct PlayerComp: public Component {
-    PlayerComp() {
-        comp_type = ComponentType::PLAYER;
-    }
-};
-
 struct MovableComp: public Component {
     MovableComp() {
-        comp_type = ComponentType::MOVABLE;
+        comp_type = ComponentType::COMP_MOVABLE;
     }
 };
 
